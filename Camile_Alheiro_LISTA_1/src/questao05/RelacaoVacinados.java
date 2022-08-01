@@ -2,19 +2,30 @@ package questao05;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class RelacaoVacinados {
 
-	private RegistroVacina[] vacinados = new RegistroVacina[200];
-	private int indice;
+	//Atributos
+	private RegistroVacina[] vacinados;
+	private int vacinados1a = 0;
+	private int vacinados2a = 0;
 
-	public RelacaoVacinados(RegistroVacina[] vacinados)
+	
+	//Construtor
+	public RelacaoVacinados()
 	{
-		this.vacinados = vacinados;
-		this.indice = 0;
+		this.vacinados = new RegistroVacina[100];
 	}
 	
+	
+	//Métodos
+	public int getVacinados1a() {
+		return vacinados1a;
+	}
+	
+	public int getVacinados2a() {
+		return vacinados2a;
+	}
 
 	public RegistroVacina[] getVacinados() {
 		return vacinados;
@@ -24,28 +35,35 @@ public class RelacaoVacinados {
 		this.vacinados = vacinados;
 	}
 
-
+	
+	//Método adicionar
 	public void adicionar(RegistroVacina registro)
 	{
-		vacinados[this.indice] = registro;
-		this.indice++;
+		for(int n = 0; n < vacinados.length; n++)
+		{
+			if(vacinados[n] == null)
+			{
+				vacinados[n] = registro;
+				break;
+			}
+			else if(registro.getPessoa().getCpf() == vacinados[n].getPessoa().getCpf() && registro.getDose() == 2)
+			{
+				vacinados[n].setDose(2);
+				break;
+			}
+		}
 	}
 	
-	public void remover(RegistroVacina registro)
-	{
-		vacinados[this.indice] = null;
-		this.indice++;
-	}
 	
-	
+	//Método de calcular vacinados a partir de uma determinada idade
 	public double calcularTotalVacinadosAcimade(int idade)
 	{
 	    double pessVacinadas = 0;
-		for(RegistroVacina total: vacinados)
+		for(int i = 0; i < vacinados.length; i++)
 		{
-			if(total.getPessoa().calcularIdade() > idade)
+			if(vacinados[i] != null && vacinados[i].getPessoa().calcularIdade() > idade)
 			{
-				if(total.getDose() == 2 || total.getDose() == 1)
+				if(vacinados[i].getDose() == 2 || vacinados[i].getDose() == 1)
 				{
 					pessVacinadas++;
 				}
@@ -54,14 +72,16 @@ public class RelacaoVacinados {
 		return pessVacinadas;
 	}
 	
+	
+	//Método de calcular idosos que tomaram a 2a dose
 	public void totalDeIdososQueTomaram2aDose()
 	{
 		int idososVacinados = 0;
-		for(RegistroVacina total: vacinados)
+		for(int i = 0; i < vacinados.length; i++)
 		{
-			if(total.getPessoa().calcularIdade() >= 65)
+			if(vacinados[i] != null && vacinados[i].getPessoa().calcularIdade() >= 65 )
 			{
-				if(total.getDose() == 2)
+				if(vacinados[i].getDose() == 2)
 				{
 					idososVacinados++;
 				}
@@ -71,43 +91,24 @@ public class RelacaoVacinados {
 		System.out.println(idososVacinados);
 	}
 	
-	public int vacinadosQueNaoTomaram2aDose()
-	{
-		int primeiraD = 0;
-		
-		
-		
-		return primeiraD;
-	}
 	
+	//Método de listar pessoas
 	public void listarPessoasQueNaoTomaram2aDose()
 	{
-		int vacinados2a = 0;
-		int vacinados1a = 0;
-		
-		//System.out.printf("%-15s %-17s %-10s %-24s", "CPF", "| Nome ", "| Idade ", "| Data Indicada p. 2a Dose\n");
-		//System.out.println("-----------------------------------------------------------------------");
-		
-		for(RegistroVacina total: vacinados)
+		for(int i = 0; i < vacinados.length; i++)
 		{		
-			if(total.getDose() == 1)
+			if(vacinados[i] != null && vacinados[i].getDose() == 1)
 			{
 				vacinados1a++;
-				LocalDate data2aDose = total.getData_vacinacao().plusDays(21);
+				LocalDate data2aDose = vacinados[i].getData_vacinacao().plusDays(21);
 				DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-				System.out.printf("%-15s | %-15s | %8d | %20s%n", total.getPessoa().getCpf(), total.getPessoa().getNome(), total.getPessoa().calcularIdade(), data2aDose.format(formatador));
+				System.out.printf("%-15s | %-15s | %8d | %24s%n", vacinados[i].getPessoa().getCpf(), vacinados[i].getPessoa().getNome(), vacinados[i].getPessoa().calcularIdade(), data2aDose.format(formatador));
 			}
 			
-			if(total.getDose() == 2)
+			else if(vacinados[i] != null && vacinados[i].getDose() == 2)
 			{
 				vacinados2a++;
 			}	
-			
 		}
-		//System.out.println("-------------------------------------------------------------");
-		//System.out.printf("%s %d", "Total de vacinados acima de 65 anos: ", vacinadosIdosos);
-		//System.out.printf("%s %d", "\nTotal de vacinados que não tomaram a 2a. dose: ", vacinados1a);
-		//System.out.printf("%s %d", "\nTotal de vacinados que tomaram a 2a. dose: ", vacinados2a);
-		
 	}
 }

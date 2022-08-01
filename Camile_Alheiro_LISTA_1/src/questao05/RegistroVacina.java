@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class RegistroVacina {
 
+	//Atributos
 	private String id;
 	private LocalDate data_vacinacao;
 	private String atendente;
@@ -14,6 +15,8 @@ public class RegistroVacina {
 	private Pessoa pessoa;
 	private Vacina vacina;
 	
+	
+	//Construtor
 	public RegistroVacina(String id, LocalDate data_vacinacao, String atendente, int dose, String local, String grupo, Pessoa pessoa, Vacina vacina)
 	{
 		this.id = id;
@@ -26,6 +29,8 @@ public class RegistroVacina {
 		this.vacina = vacina;
 	}
 	
+	
+	//Métodos
 	public String getId() {
 		return id;
 	}
@@ -56,6 +61,7 @@ public class RegistroVacina {
 	
 	public void setDose(int dose) {
 		
+		this.dose = dose;
 		ArrayList<Integer> dosePoss = new ArrayList<>();
 		dosePoss.add(1);
 		dosePoss.add(2);

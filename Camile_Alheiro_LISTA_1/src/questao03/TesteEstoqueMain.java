@@ -22,8 +22,6 @@ public class TesteEstoqueMain {
 		produto01.mudarNome("Teclado Virtual");
 		
 		System.out.println(estoque1.relatorio());
-		
-		
 	}
 
 }

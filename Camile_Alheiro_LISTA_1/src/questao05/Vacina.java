@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Vacina {
 
+	//Atributos
 	private int codigo;
 	private String nome;
 	private String lote;
 	
 	
+	//Construtor
 	public Vacina(int codigo, String nome, String lote)
 	{
 		this.codigo = codigo;
@@ -16,6 +18,8 @@ public class Vacina {
 		this.lote = lote;
 	}
 	
+	
+	//Métodos
 	public int getCodigo() {
 		return codigo;
 	}
@@ -37,10 +41,6 @@ public class Vacina {
 		{
 			this.nome = nome;
 		}
-//		else 
-//		{
-//			System.out.println("Você digitou uma vacina inválida");
-//		}
 	}
 	
 	public String getLote() {
@@ -50,6 +50,4 @@ public class Vacina {
 	public void setLote(String lote) {
 		this.lote = lote;
 	}
-	
-	
 }

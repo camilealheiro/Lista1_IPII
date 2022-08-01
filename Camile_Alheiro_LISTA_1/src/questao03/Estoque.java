@@ -2,11 +2,12 @@ package questao03;
 
 public class Estoque {
 
+	//Atributos
 	private Produto produto;
 	private int qtdAtual;
 	private int qtdMinima;
 	
-	//construtores
+	//Construtores
 	public Estoque()
 	{
 		this.produto = null;
@@ -21,7 +22,7 @@ public class Estoque {
 		this.qtdMinima = qtdMinima;
 	}
 	
-	//metodos
+	//Métodos
 	public double mudarQtdMinima(int qtdMinimaNova)
 	{
 		qtdMinima = qtdMinimaNova;
@@ -39,22 +40,21 @@ public class Estoque {
 		{
 			qtdAtual -= qtd;
 		}
-		else
-		{
-			System.out.println("Estoque insuficiente");
-		}
 		
-		if(qtdAtual < qtdMinima)
+		if(qtdAtual < qtd || qtdAtual < qtdMinima)
 		{
-			System.out.println("Estoque insuficiente");
+			qtdAtual += qtd;
+			System.out.println("Estoque insuficiente. Baixa não aplicada");
 		}
 	}
 	
+	
+	//Método relatório
 	public String relatorio()
 	{
 		String relatorio;
 		relatorio = String.format("Produto: %s - %s \nQuantidade Atual: %d \nQuantidade Mínima: %d\n", this.produto.getNome(), this.produto.getCodigo(), this.qtdAtual, this.qtdMinima);
-		relatorio += "----------------------------";
+		relatorio += "---------------------------------------";
 		return relatorio;
 	}
 }

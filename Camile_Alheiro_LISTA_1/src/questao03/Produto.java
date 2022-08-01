@@ -2,11 +2,11 @@ package questao03;
 
 public class Produto {
 
-	//atributos
+	//Atributos
 	private String codigo;
 	private String nome;
 	
-	//construtor
+	//Construtores
 	public Produto()
 	{
 		codigo = "0";
@@ -19,7 +19,7 @@ public class Produto {
 		this.nome = nome;
 	}
 	
-	//métodos
+	//Métodos
 	public String mudarNome(String nomeNovo)
 	{
 		nome = nomeNovo;
@@ -41,7 +41,4 @@ public class Produto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	
 }

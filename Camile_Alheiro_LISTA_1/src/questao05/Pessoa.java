@@ -6,12 +6,14 @@ import java.util.ArrayList;
 
 public class Pessoa {
 	
+	//Atributos
 	private String nome;
 	private String cpf;
 	private String grupo;
 	private LocalDate datadeNascimento;
 	
 	
+	//Construtor
 	public Pessoa(String nome, String cpf, String grupo, LocalDate dataDeNascimento)
 	{
 		this.nome = nome;
@@ -20,6 +22,10 @@ public class Pessoa {
 		this.datadeNascimento = dataDeNascimento;
 	}
 	
+	
+	//Métodos
+	
+	//Método de calcular idade
 	public int calcularIdade()
 	{
 		LocalDate dataHoje = LocalDate.now();
@@ -68,5 +74,4 @@ public class Pessoa {
 	public void setDatadeNascimento(LocalDate datadeNascimento) {
 		this.datadeNascimento = datadeNascimento;
 	}
-	
 }
